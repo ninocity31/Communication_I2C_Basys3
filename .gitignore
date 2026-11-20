@@ -1,0 +1,8 @@
+# Build outputs
+**/Debug/
+**/Release/
+*.bak_spi
+_incoming/
+.Xil/
+*.jou
+*.log

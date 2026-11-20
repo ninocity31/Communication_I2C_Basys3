@@ -1,0 +1,22 @@
+\documentclass[border=4pt]{standalone}\input{pre.tex}
+\begin{document}\begin{tikzpicture}[f/.style={draw, line width=0.7pt, minimum height=0.9cm, align=center, font=\footnotesize, inner sep=2pt}]
+\def\x{0}
+\node[f, minimum width=0.8cm, anchor=west] (s) at (0,0) {S};
+\node[f, minimum width=2.4cm, anchor=west] (ad) at (s.east) {address \texttt{0x42}\\+ W};
+\node[f, fill=black!14, minimum width=0.6cm, anchor=west] (a0) at (ad.east) {A};
+\node[f, minimum width=1.8cm, anchor=west] (b0) at (a0.east) {byte 0\\LED high};
+\node[f, fill=black!14, minimum width=0.6cm, anchor=west] (a1) at (b0.east) {A};
+\node[f, minimum width=1.8cm, anchor=west] (b1) at (a1.east) {byte 1\\LED low};
+\node[f, fill=black!14, minimum width=0.6cm, anchor=west] (a2) at (b1.east) {A};
+\node[f, minimum width=1.8cm, anchor=west] (b2) at (a2.east) {byte 2\\display high};
+\node[f, fill=black!14, minimum width=0.6cm, anchor=west] (a3) at (b2.east) {A};
+\node[f, minimum width=1.8cm, anchor=west] (b3) at (a3.east) {byte 3\\display low};
+\node[f, fill=black!14, minimum width=0.6cm, anchor=west] (a4) at (b3.east) {A};
+\node[f, minimum width=0.8cm, anchor=west] (p) at (a4.east) {P};
+% legend
+\node[f, minimum width=0.6cm, minimum height=0.45cm, anchor=west] (k1) at (0,-1.05) {};
+\node[font=\footnotesize, anchor=west] at (k1.east) {sent by the master};
+\node[f, fill=black!14, minimum width=0.6cm, minimum height=0.45cm, anchor=west] (k2) at (4.2,-1.05) {};
+\node[font=\footnotesize, anchor=west] at (k2.east) {sent by the slave};
+\node[font=\footnotesize, anchor=west] at (8.0,-1.05) {S = START \quad A = ACK \quad P = STOP \quad W = write};
+\end{tikzpicture}\end{document}

@@ -1,0 +1,15 @@
+\documentclass[border=4pt]{standalone}\input{pre.tex}
+\begin{document}\begin{tikzpicture}[node distance=1.25cm]
+\node[blk=2.6cm] (m) {Master sends\\address \texttt{0x42}};
+\node[blk=2.6cm, right=of m] (iic) {AXI IIC sees\\its address};
+\node[blk=2.6cm, right=of iic] (intc) {AXI INTC\\$\rightarrow$ MicroBlaze};
+\node[blk=3.2cm, right=of intc] (h1) {\texttt{master\_calls()}\\\texttt{master\_talks = 1}};
+\node[blk=3.2cm, below=1.1cm of h1] (rx) {\texttt{main}: \texttt{XIic\_SlaveRecv}\\(frame, 4 bytes)};
+\node[blk=3.0cm, left=of rx] (h2) {\texttt{reception\_done()}\\\texttt{frame\_received = 1}};
+\node[blk=3.0cm, left=of h2] (out) {\texttt{main}: write\\LEDs and display};
+\draw[dg,->] (m) -- (iic); \draw[dg,->] (iic) -- node[lab,above]{interrupt} (intc);
+\draw[dg,->] (intc) -- (h1); \draw[dg,->] (h1) -- (rx);
+\draw[dg,->] (rx) -- node[lab,below]{4 bytes in} (h2); \draw[dg,->] (h2) -- (out);
+\coordinate (lx) at ($(m.west)+(-0.5,0)$);
+\draw[dg,->] (out.west) -- (out.west -| lx) -- node[lab,left]{wait for next frame} (lx) -- (m.west);
+\end{tikzpicture}\end{document}
