@@ -45,6 +45,7 @@ int main()
 
     // LEDs and display
     XGpio_Initialize(&gpio, XPAR_GPIO_0_DEVICE_ID);
+    XGpio_SetDataDirection(&gpio, 2, 0x0000);   // channel 2 (LEDs) as output
 
     // I2C block in slave mode
     XIic_Initialize(&iic, XPAR_IIC_0_DEVICE_ID);
